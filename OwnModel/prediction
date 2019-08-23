@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ "$1" == "" ]
+then
+        python3 demo.py
+else
+        python3 demo.py "$1"
+fi
+

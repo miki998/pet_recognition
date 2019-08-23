@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#Script to either live recog or video recog with training simultaneously
+
+if [ "$1" == "" ]
+then
+        python3 recogAndTrainV3.py;
+else
+        if [ "$2" == "" ]
+        then
+                python3 recogAndTrainV3.py "$1";
+        else
+                if [ "$3" == "" ]
+                then
+                        python3 recogAndTrainV3.py $1 "$2";
+                else
+                        python3 recogAndTrainV3.py $1 "$2" "$3";
+                fi
+        fi
+fi                       

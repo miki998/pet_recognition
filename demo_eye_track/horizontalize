@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+rm result/* 2> /dev/null
+
+if [ "$2" == "" ]
+then 
+	python3 horizontalize.py "$1"
+else
+	python3 horizontalize.py "$1" "$2"
+fi
+

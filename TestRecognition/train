@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#Just recognizing a pic script
+
+rm result/* 2> /dev/null
+
+if [ "$2" == "" ]
+then 
+	python3 train.py "$1"
+else
+	python3 train.py "$1" "$2"
+fi
