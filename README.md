@@ -20,8 +20,8 @@ by labelling as live filming goes.
 ## Structure:
 
 Here we give a general explanation of the structure, more detail can be found on each folder (READMEs)
-- backupScript: just some previous version folder 
-- backupWeight: has all the different weights/models needed for the project
+
+- backupWeight: has all the different weights/models needed for the project (Ask me for it,send mail)
 - CNNCompare: CNN method to use as comparison
 - demoBreed: demo to see the efficiency of a lib model for breed recognition
 - demo_detect: demo to test out the weights from yolo detection
