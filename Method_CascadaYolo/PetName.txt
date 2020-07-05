@@ -1,9 +1,0 @@
-
-ladyDopel2
-dog1
-ladyDopel
-cat2
-ladyDopel3
-cat1
-cat3
-lady

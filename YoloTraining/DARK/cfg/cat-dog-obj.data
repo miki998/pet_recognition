@@ -1,5 +1,0 @@
-classes = 2
-train = order/cat-dog-train.txt
-valid = order/cat-dog-test.txt
-names = order/cat-dog-obj.names
-backup = backup/

@@ -1,7 +1,0 @@
-
-
-dog1
-cat2
-cat1
-cat3
-lady

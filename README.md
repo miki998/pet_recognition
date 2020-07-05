@@ -1,53 +1,55 @@
-# Cat-Dog-face-recognition
+# General Idea/ Modifications
 
-The goal being to be able to stably detect cat or dog, then either dynamically or statically recognize the pet that we have detected in a pre-given database or a database that we update 
-by labelling as live filming goes. 
+This is a combination of Haarcascade and yolov. As we know, we need some sort of intermediary input for cropped faces, even though those are not very much precise due to lbph's nature (background and fur influe quite a lot on its prediction). 
+The general idea would be to use newly trained models (body and face) to capture... body and then face. The face would go through a cascade to be then predicted or fed to train. 
+We use for now a memory determination way to decide what we should label on the detection. The decision is made on a simple average (even though we should definitely improve this). 
 
-## General Prerequisites
+# Structure of the Repository
 
-    python3
-    jupyter notebook installed (either through conda or downloaded)
-    keras 
-    openCV (>= 4.1.0)
-    tensorflow (gpu version is optional) 
-    CUDA (used: 10.1 any version that is compatible with your GPU (Optional))
-    tkinter 
-    haarcascade weights (if you have downloaded openCV in weird way)
-    matplotlib
-    PIL (Image)
-
-
-## Structure:
-
-Here we give a general explanation of the structure, more detail can be found on each folder (READMEs)
-
-- backupWeight: has all the different weights/models needed for the project (Ask me for it,send mail)
-- CNNCompare: CNN method to use as comparison
-- demoBreed: demo to see the efficiency of a lib model for breed recognition
-- demo_detect: demo to test out the weights from yolo detection
-- demo_eye_track: demo to see yolo detection of eyes and result of horizontalizing according to that detection
-- demo_LBP: demo to display lbp features of pictures
-- Method_CascadaYolo: main folder, do recognition and detection with a starting/fix model 
-- OwnModel: implementation of lpbh algorithm using own idea
-- Simult_recog_train: main folder, do recognition and detection. Models can be overwritten and updated as process goes
-- TestRecognition: LBPH algo from opencv test, the recognition of an image starting from a pre-trained model (training available too inside the folder)
-- tool_checking_corrupt: for corrupted pics, dump bad pictures
-- YoloTraining: script for a simple training (fixed architecture) of yolo model (detection purpose)
-- YoloV3-Annotation-Tool: Annotation Tool to bbox label images
-
-Ideas will be detailed inside each single folders.
+- DARK: A folder containing a modified/replaced version of a cloned library
+- __version__: previous versions of the main code, you can check it out as a research material
+- bin_can: some auxiliary scripts, might be useful in some cases, read the description the code itself
+- models: recognition models, the one in the current repository was trained on different pets listed in PetName.txt
+- video: folder where you store the videos that tests the recognition of the pets on the video
+- video_result: folder where you get the outputted result of the script when given a video
+- weights: the weights for the detection part
+- PetName.txt: list of the pet names that our model classifies on
+- cascadaYolo: bash script for a easier usage
+- cascadaYolo_v5.py: python script source code for cascadaYolo
 
 
-## SOURCES/ CREDITS
+## Usage
 
-    https://github.com/pjreddie/darknet 
-    https://www.wouterbulten.nl/blog/tech/data-augmentation-using-tensorflow-data-dataset/
-    https://github.com/ManivannanMurugavel/Yolo-Annotation-Tool-New-
-    https://medium.com/@manivannan_data/yolo-annotation-tool-new-18c7847a2186
-    https://medium.com/@manivannan_data/how-to-train-yolov3-to-detect-custom-objects-ccbcafeb13d2
-    https://github.com/Ma-Dan/YOLOv3-CoreML
-    https://www.cognizantsoftvision.com/blog/face-detection-vision-core-image-opencv/
-    https://www.kaggle.com/zippyz/cats-and-dogs-breeds-classification-oxford-dataset/downloads/cats-and-dogs-breeds-classification-oxford-dataset.zip/1
-    http://vision.stanford.edu/aditya86/ImageNetDogs/
+### Preparations
+Since gitlab limits the amount of files we can upload, we need to fetch back the needed weight and libs. 
+If you wanna get the video yourself then go ahead, but you can also follow the third part of this preparation
+in order to get the video that we already prepared for you.
 
+- Dowload the following [files](https://drive.google.com/open?id=113ri7b58DAMj-g_ep4HAVRhv5xPfCddi) and put them inside the weights folder  
+- (Only if you don't have anything inside DARK) Download the following files and replace DARK [folder](https://drive.google.com/open?id=1WynGkBqTeMHpHLSleJBB49kGNy1P2Xyx)
+- (Optional) Download the [videos](https://drive.google.com/open?id=1UmLqGnGD6Vv0jaLtKc60YGzrnZKofeTJ) and put them in video folder.
+- (Optional) Download the [video_result](https://drive.google.com/open?id=1PJRPwJXsXJ_8-euIUf1M_8q4sb1IwJkK) , these are some result of our recognition. (the files might not be up to date)
 
+You should be good to go now ... as if xD. If you are not using a GPU then while running the DARK scripts you will
+encounter multiple errors. So either get yourself a GPU (would be nice) or :
+- go to DARK folder you should find a Makefile
+- Check the source code of Makefile, and change the first line to GPU = 0
+- Save, make, now good to go.
+    
+### Utility
+Check the helper function yourself
+
+    ./cascadaYolo -h
+    
+or if you are lazy then here are the different possibilities (videopath, is the path to the video from root of this repository/can be absolute path too if you wish): 
+    
+    ./cascadaYolo -r videopath
+    ./cascadaYolo -r -v videopath
+    ./cascadaYolo -l 
+    ./cascadaYolo -l -v 
+    
+- the -r option is for recognition of a video
+- the -l option is for live recognition but you'll need a webcam with index 0 in the list of your cameras.
+- the -v option is basically verbose i.e having the bounding for yoloface (red rectangle) and the bounding for haarcascade that is fed to predict (blue rectangle)
+
+When using -r, you should get the output in video_result, with the name r"videoname". 

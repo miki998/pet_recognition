@@ -1,0 +1,7 @@
+opencv-python
+opencv-contrib-python
+numpy
+scikit-learn
+seaborn
+Pillow
+

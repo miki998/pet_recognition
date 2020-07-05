@@ -1,5 +1,0 @@
-#!/bin/bash
-
-#script to just have start doing bbox annotatios
-
-python3 main.py

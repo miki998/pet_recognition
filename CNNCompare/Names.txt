@@ -1,5 +1,0 @@
-dog1
-cat2
-cat1
-cascadePic
-cat3
