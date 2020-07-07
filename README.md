@@ -3,53 +3,95 @@
 This is a combination of Haarcascade and yolov. As we know, we need some sort of intermediary input for cropped faces, even though those are not very much precise due to lbph's nature (background and fur influe quite a lot on its prediction). 
 The general idea would be to use newly trained models (body and face) to capture... body and then face. The face would go through a cascade to be then predicted or fed to train. 
 We use for now a memory determination way to decide what we should label on the detection. The decision is made on a simple average (even though we should definitely improve this). 
+![](https://img.shields.io/badge/<Implementation>-<yolo+lbph>-<success>)
+![](https://img.shields.io/badge/<Implementation>-<real-time recognition/alarm>-<red>)
 
-# Structure of the Repository
-
-- DARK: A folder containing a modified/replaced version of a cloned library
-- __version__: previous versions of the main code, you can check it out as a research material
-- bin_can: some auxiliary scripts, might be useful in some cases, read the description the code itself
-- models: recognition models, the one in the current repository was trained on different pets listed in PetName.txt
-- video: folder where you store the videos that tests the recognition of the pets on the video
-- video_result: folder where you get the outputted result of the script when given a video
-- weights: the weights for the detection part
-- PetName.txt: list of the pet names that our model classifies on
-- cascadaYolo: bash script for a easier usage
-- cascadaYolo_v5.py: python script source code for cascadaYolo
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R5R11K2H4)
 
 
-## Usage
+## Getting Started
 
-### Preparations
-Since gitlab limits the amount of files we can upload, we need to fetch back the needed weight and libs. 
-If you wanna get the video yourself then go ahead, but you can also follow the third part of this preparation
-in order to get the video that we already prepared for you.
+Simply open the jupyter notebook and see how some demo on pictures that we uploaded with this repository
 
-- Dowload the following [files](https://drive.google.com/open?id=113ri7b58DAMj-g_ep4HAVRhv5xPfCddi) and put them inside the weights folder  
-- (Only if you don't have anything inside DARK) Download the following files and replace DARK [folder](https://drive.google.com/open?id=1WynGkBqTeMHpHLSleJBB49kGNy1P2Xyx)
-- (Optional) Download the [videos](https://drive.google.com/open?id=1UmLqGnGD6Vv0jaLtKc60YGzrnZKofeTJ) and put them in video folder.
-- (Optional) Download the [video_result](https://drive.google.com/open?id=1PJRPwJXsXJ_8-euIUf1M_8q4sb1IwJkK) , these are some result of our recognition. (the files might not be up to date)
+### Prerequisites
 
-You should be good to go now ... as if xD. If you are not using a GPU then while running the DARK scripts you will
-encounter multiple errors. So either get yourself a GPU (would be nice) or :
-- go to DARK folder you should find a Makefile
-- Check the source code of Makefile, and change the first line to GPU = 0
-- Save, make, now good to go.
-    
-### Utility
-Check the helper function yourself
+What things you need to install the software and how to install them
 
-    ./cascadaYolo -h
-    
-or if you are lazy then here are the different possibilities (videopath, is the path to the video from root of this repository/can be absolute path too if you wish): 
-    
-    ./cascadaYolo -r videopath
-    ./cascadaYolo -r -v videopath
-    ./cascadaYolo -l 
-    ./cascadaYolo -l -v 
-    
-- the -r option is for recognition of a video
-- the -l option is for live recognition but you'll need a webcam with index 0 in the list of your cameras.
-- the -v option is basically verbose i.e having the bounding for yoloface (red rectangle) and the bounding for haarcascade that is fed to predict (blue rectangle)
+```
+scikit-image
+matplotlib
+numpy
+notebook
+scipy
+```
 
-When using -r, you should get the output in video_result, with the name r"videoname". 
+### Installing
+
+Here are the steps to follow
+
+#### Usual way
+Installing using requirements.txt
+```
+pip3 install -r requirements.txt
+```
+
+#### Docker way
+Installing using docker (if you have it installed it can make sure there is no problem linked to packages in the whole process)
+```
+docker build -t <docker-name> .
+docker run -it --ipc=host -p 9999 <docker-name> 
+```
+
+
+Obviously you are free to add any options, here I added 9999 port in case you want to access with a jupyter notebook, and --ipc=host in case you want to train for new models of darknet itself (though we do not support this)
+
+## Running the tests
+
+When you are in the root folder of the repository or when you activated docker container 
+
+For recognition of a specific image (you can check the argument when you mistakely run at the beginning) and for training for recognition (so computing the lbph features and saving them)
+```
+ python3 recog.py <-arguments>
+ python3 train.py <-arguments>
+```
+
+### Break down into end to end tests
+
+We explain here sohrtly how we proceed to get the image we extract lbph features from (extra variants can be made starting from this idea)
+
+#### A three step detection/recognition 
+- body detection
+- face detection
+- closeup face detection
+- recognition using comparison of lbph features
+
+
+## Deployment
+
+None yet, you can do some pull requests to me
+
+## Built With
+
+* [python3](https://www.python.org/download/releases/3.0/) - The web framework used
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Authors
+Michael Chan
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
+
+## Acknowledgments
+https://github.com/pjreddie/darknet
+
+
+
+
+
+
+
+
+
