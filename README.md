@@ -1,5 +1,5 @@
 ![](https://img.shields.io/badge/<Implementation>-<yolo+lbph>-<success>)
-![](https://img.shields.io/badge/<Implementation>-<real-time recognition/alarm>-<success>)
+![](https://img.shields.io/badge/<Implementation>-<real-time-recognition/alarm>-<success>)
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R5R11K2H4)
 # General Idea/ Modifications
