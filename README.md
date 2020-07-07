@@ -1,13 +1,12 @@
+![](https://img.shields.io/badge/<Implementation>-<yolo+lbph>-<success>)
+![](https://img.shields.io/badge/<Implementation>-<real-time recognition/alarm>-<success>)
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R5R11K2H4)
 # General Idea/ Modifications
 
 This is a combination of Haarcascade and yolov. As we know, we need some sort of intermediary input for cropped faces, even though those are not very much precise due to lbph's nature (background and fur influe quite a lot on its prediction). 
 The general idea would be to use newly trained models (body and face) to capture... body and then face. The face would go through a cascade to be then predicted or fed to train. 
 We use for now a memory determination way to decide what we should label on the detection. The decision is made on a simple average (even though we should definitely improve this). 
-![](https://img.shields.io/badge/<Implementation>-<yolo+lbph>-<success>)
-![](https://img.shields.io/badge/<Implementation>-<real-time recognition/alarm>-<red>)
-
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R5R11K2H4)
-
 
 ## Getting Started
 
